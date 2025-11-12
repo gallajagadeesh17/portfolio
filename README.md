@@ -7,7 +7,7 @@ It’s a single-page modern web portfolio built using **HTML, CSS**, and simple 
 ---
 
 ## 🌐 Live Demo
-🔗 **View Portfolio:** [https://gallajagadeesh17.portfolio](https://gallajagadeesh17.github.io/portfolio/)  
+🔗 **View Portfolio:** [Click here to view my portfolio](https://gallajagadeesh17.github.io/portfolio/)  
 📄 **Download My Resume:** Available on the "Resume" section of the site.
 
 ---
