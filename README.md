@@ -1,10 +1,7 @@
 # 🚀 Galla Jagadeesh - Portfolio Website
 
 A modern, responsive, and AI-inspired personal portfolio website built to showcase my journey, projects, technical skills, and passion for Artificial Intelligence and Automation.
-
-🌐 **Live Demo:** *(Add your deployed link here)*
 📄 **Resume:** Available directly from the portfolio.
-
 ---
 
 ## ✨ Features
