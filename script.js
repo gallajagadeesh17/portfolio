@@ -57,7 +57,7 @@ const responses = {
     "My core skills include Python, Flask, HTML, CSS, SQL, Machine Learning, NLP, n8n Automation, AI Automation, Prompt Engineering, GitHub, and Scikit-learn.",
 
   "what projects have you built":
-    "I have built a MoodFlix Movie Recommendation System, a Spam Email Detection System, and I am currently building an AI Sales Intelligence Agent using n8n and AI workflows.",
+    "I have built a MoodFlix Movie Recommendation System, a Spam Email Detection System, a LinkedIn AI Automation Platform and I am currently building an AI Sales Intelligence Agent using n8n and AI workflows.",
 
   "what is your ai sales intelligence agent":
     "It is an AI-powered assistant that automatically gathers company information from news, websites, and social media, then generates meeting briefings to help sales teams prepare quickly.",
