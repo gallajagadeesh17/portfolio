@@ -1,55 +1,63 @@
-console.log("script.js loaded!");
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Portfolio Ready!");
 
-// Hero Typing Effect
-const phrases = ["AI ENGINEER", "ML DEVELOPER"];
-let i = 0, j = 0, isDeleting = false;
-const textDisplay = document.querySelector(".typing-text");
-
-function typeLoop() {
-  textDisplay.innerHTML = phrases[i].substring(0, j);
-
-  if (!isDeleting && j <= phrases[i].length) {
-    j++;
-  } else if (isDeleting && j <= phrases[i].length) {
-    j--;
-  }
-
-  if (j === phrases[i].length) {
-    isDeleting = true;
-    setTimeout(typeLoop, 1500); // Pause at end of word
-    return;
-  } else if (j === 0) {
-    isDeleting = false;
-    i = (i + 1) % phrases.length;
-  }
-  setTimeout(typeLoop, isDeleting ? 50 : 100);
-}
-typeLoop();
-
-// Fade animation on scroll
-const cards = document.querySelectorAll(
-  ".bento-card, .project-card, .journey-card, .skill-tag"
-);
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+  // Hero Typing Effect
+  const typingText = document.querySelector(".typing-text");
+  if (typingText) {
+    const phrases = ["AI ENGINEER", "AUTOMATION DEV", "ML DEVELOPER"];
+    let i = 0, j = 0, isDeleting = false;
+    
+    function typeLoop() {
+      const currentPhrase = phrases[i];
+      typingText.innerHTML = currentPhrase.substring(0, j);
+      
+      if (!isDeleting) {
+        if (j < currentPhrase.length) {
+          j++;
+          setTimeout(typeLoop, 100);
+        } else {
+          isDeleting = true;
+          setTimeout(typeLoop, 1500);
+        }
+      } else {
+        if (j > 0) {
+          j--;
+          setTimeout(typeLoop, 50);
+        } else {
+          isDeleting = false;
+          i = (i + 1) % phrases.length;
+          setTimeout(typeLoop, 500);
+        }
       }
-    });
-  },
-  {
-    threshold: 0.2,
+    }
+    typeLoop();
   }
-);
 
-cards.forEach((card) => {
-  observer.observe(card);
-});
+  // Fade animation on scroll
+  const animatedElements = document.querySelectorAll(
+    ".bento-card, .project-card, .timeline-item, .skill-category"
+  );
 
-// AI Chat Bot Responses
-const responses = {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  animatedElements.forEach((el) => {
+    observer.observe(el);
+  });
+
+  // AI Chat Bot
+  const responses = {
     "tell me about yourself":
         "I'm Jagadeesh Galla, a B.Tech CSE-AI student passionate about building AI-powered software, autonomous AI agents, and workflow automation systems. I enjoy transforming repetitive business processes into intelligent AI solutions using Python, Flask, n8n, Generative AI, and modern APIs. My focus is on developing production-ready AI applications that combine machine learning, LLMs, and automation to improve productivity and user experience.",
     "what are your technical skills":
@@ -78,79 +86,267 @@ const responses = {
         "You can find my projects and code on my GitHub profile. The link is in the contact section at the bottom of the page."
 };
 
-const sendBtn = document.getElementById("send-btn");
+  const chatToggle = document.getElementById("chat-toggle");
+  const chatBox = document.getElementById("chat-box");
+  const closeChat = document.getElementById("close-chat");
+  const quickQuestionsContainer = document.querySelector(".quick-questions");
 
-if (sendBtn) {
-    sendBtn.addEventListener("click", function () {
-        const input = document.getElementById("user-input");
-        const message = input.value.trim().toLowerCase();
+  if (chatToggle && chatBox && closeChat) {
+    chatToggle.addEventListener("click", () => chatBox.classList.add("active"));
+    closeChat.addEventListener("click", () => chatBox.classList.remove("active"));
+  }
 
-        if (message === "") return;
-
-        addMessage(message, "user");
-
-        const reply =
-            responses[message] ||
-            "🤖 Sorry, I don't know that yet. Try one of the suggested questions!";
-
-        setTimeout(() => {
-            addMessage(reply, "bot");
-        }, 500);
-
-        input.value = "";
-    });
-}
-
-function addMessage(text, sender) {
+  function addMessage(text, sender, isHTML = false) {
     const chatBody = document.getElementById("chat-body");
     const msg = document.createElement("div");
-
-    msg.className = sender === "user" ? "user-message" : "bot-message";
-    msg.innerHTML = text;
-
+    msg.classList.add("message", sender === "user" ? "user-message" : "bot-message");
+    
+    if (isHTML) {
+      msg.innerHTML = text;
+    } else {
+      msg.textContent = text;
+    }
+    
     chatBody.appendChild(msg);
     chatBody.scrollTop = chatBody.scrollHeight;
-}
+  }
 
-function askQuestion(question) {
-    addMessage(getButtonLabel(question), "user");
-
+  function askQuestion(questionKey, questionText) {
+    addMessage(questionText, "user");
+    
     setTimeout(() => {
-        const reply = responses[question.toLowerCase()] ||
-            "Sorry, I don't have information about that yet.";
-
-        addMessage(reply, "bot");
+      const reply = responses[questionKey] || "Sorry, I don't have information about that yet.";
+      addMessage(reply, "bot");
     }, 300);
-}
+  }
 
-function getButtonLabel(question){
-    const labels = {
-        "linkedin ai": "🚀 LinkedIn AI",
-        "ai agent": "🤖 AI Agent",
-        "n8n workflows": "⚡ n8n Workflows",
-        "prompt engineering": "🧠 Prompt Engineering",
-        "ai sales agent": "📈 AI Sales Agent",
-        "show me your resume": "📄 Resume",
-        "github": "💻 GitHub",
-        "how can i contact you": "📧 Contact"
-    };
+  if (quickQuestionsContainer) {
+    quickQuestionsContainer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('quick-question')) {
+        const questionKey = e.target.dataset.question;
+        const questionText = e.target.textContent.trim();
+        askQuestion(questionKey, questionText);
+      }
+    });
+  }
 
-    return labels[question.toLowerCase()] || question;
-}
+  // Mobile Menu
+  const menuToggle = document.getElementById('menu-toggle');
+  const navUl = document.querySelector('nav ul');
+  const navLinks = document.querySelectorAll('nav ul a');
 
-// ===== AI Assistant Toggle =====
-document.addEventListener("DOMContentLoaded", function () {
+  if (menuToggle && navUl) {
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('active');
+    });
 
-    const btn = document.getElementById("chat-toggle");
-    const box = document.getElementById("chat-box");
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navUl.classList.remove('active');
+      });
+    });
+  }
 
-    console.log(btn);
-    console.log(box);
+  // Active Nav Link on Scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let scrollY = window.pageYOffset;
+    sections.forEach(current => {
+      const sectionHeight = current.offsetHeight;
+      const sectionTop = current.offsetTop - 150;
+      const sectionId = current.getAttribute('id');
 
-    if (btn && box) {
-        btn.addEventListener("click", function () {
-            box.classList.toggle("active");
-        });
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        document.querySelector('nav a[href*=' + sectionId + ']').classList.add('active');
+      } else {
+        document.querySelector('nav a[href*=' + sectionId + ']').classList.remove('active');
+      }
+    });
+  });
+
+  // Update project count
+  const projectGrid = document.querySelector('.projects-grid');
+  if (projectGrid) {
+      const projectCount = projectGrid.querySelectorAll('.project-card:not(.featured)').length;
+      const projectsBuiltStat = document.querySelector('.hero-stats .stat-card:first-child h2');
+      if (projectsBuiltStat) {
+          projectsBuiltStat.textContent = `${projectCount}+`;
+      }
+  }
+
+  // Mouse Spotlight Effect
+  const spotlight = document.getElementById('spotlight');
+  if (spotlight) {
+    window.addEventListener('mousemove', (e) => {
+      spotlight.style.left = `${e.pageX}px`;
+      spotlight.style.top = `${e.pageY}px`;
+    });
+  }
+
+  // 3D Tilt Effect for Cards
+  function apply3DTilt(selector, maxTilt = 8) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const { width, height } = rect;
+        const rotateX = (y / height - 0.5) * -maxTilt;
+        const rotateY = (x / width - 0.5) * maxTilt;
+
+        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+      });
+
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      });
+    });
+  }
+
+  apply3DTilt('.project-card');
+  apply3DTilt('.bento-card');
+
+  // Magnetic Buttons
+  function applyMagneticEffect(selector, strength = 40) {
+    const buttons = document.querySelectorAll(selector);
+    buttons.forEach(button => {
+      button.addEventListener('mousemove', (e) => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        const distance = Math.sqrt(x * x + y * y);
+        
+        if (distance < strength) {
+          button.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.03)`;
+        } else {
+          button.style.transform = 'translate(0,0) scale(1.03)'; // Keep scale from hover
+        }
+      });
+
+      button.addEventListener('mouseleave', () => {
+        button.style.transform = 'translate(0,0) scale(1)';
+      });
+    });
+  }
+
+  // Apply only to hero buttons for a focused effect
+  applyMagneticEffect('.hero-buttons .btn');
+
+
+  // Command Palette
+  const commandPalette = document.getElementById('command-palette');
+  const paletteInput = document.getElementById('palette-input');
+  const paletteResults = document.getElementById('palette-results');
+  const paletteOverlay = document.getElementById('palette-overlay');
+
+  const commands = [
+    { name: 'Home', category: 'Navigation', icon: 'fa-solid fa-house', action: () => window.location.href = '#home' },
+    { name: 'About Me', category: 'Navigation', icon: 'fa-solid fa-user', action: () => window.location.href = '#about' },
+    { name: 'Skills', category: 'Navigation', icon: 'fa-solid fa-code', action: () => window.location.href = '#skills' },
+    { name: 'Projects', category: 'Navigation', icon: 'fa-solid fa-folder-open', action: () => window.location.href = '#projects' },
+    { name: 'Career Journey', category: 'Navigation', icon: 'fa-solid fa-timeline', action: () => window.location.href = '#journey' },
+    { name: 'Contact Me', category: 'Navigation', icon: 'fa-solid fa-envelope', action: () => window.location.href = '#contact' },
+    { name: 'View Resume', category: 'Link', icon: 'fa-solid fa-file-pdf', action: () => window.open('resume.pdf', '_blank') },
+    { name: 'View GitHub', category: 'Link', icon: 'fa-brands fa-github', action: () => window.open('https://github.com/gallajagadeesh17', '_blank') },
+    { name: 'View LinkedIn', category: 'Link', icon: 'fa-brands fa-linkedin', action: () => window.open('https://linkedin.com/in/galla-jagadeesh-001310298', '_blank') },
+    { name: 'Toggle Chatbot', category: 'Action', icon: 'fa-solid fa-robot', action: () => document.getElementById('chat-box').classList.toggle('active') },
+  ];
+
+  function openPalette() {
+    commandPalette.classList.remove('command-palette-hidden');
+    paletteInput.value = '';
+    renderResults(commands);
+    paletteInput.focus();
+  }
+
+  function closePalette() {
+    commandPalette.classList.add('command-palette-hidden');
+  }
+
+  function renderResults(results) {
+    paletteResults.innerHTML = '';
+    if (results.length === 0) {
+      paletteResults.innerHTML = `<li class="no-results">No results found</li>`;
+      return;
     }
+    results.forEach((command, index) => {
+      const li = document.createElement('li');
+      li.dataset.index = index;
+      li.innerHTML = `
+        <div class="item-text">
+          <i class="${command.icon}"></i>
+          <span>${command.name}</span>
+        </div>
+        <span class="item-category">${command.category}</span>
+      `;
+      li.addEventListener('click', () => {
+        command.action();
+        closePalette();
+      });
+      paletteResults.appendChild(li);
+    });
+    // Select the first item
+    if (paletteResults.firstChild) {
+      paletteResults.firstChild.classList.add('selected');
+    }
+  }
 
+  function handleSearch() {
+    const query = paletteInput.value.toLowerCase();
+    const filteredCommands = commands.filter(command => 
+      command.name.toLowerCase().includes(query) || 
+      command.category.toLowerCase().includes(query)
+    );
+    renderResults(filteredCommands);
+  }
+
+  function handleKeyboardNav(e) {
+    const items = paletteResults.querySelectorAll('li');
+    if (items.length === 0) return;
+
+    let selectedIndex = -1;
+    items.forEach((item, index) => {
+      if (item.classList.contains('selected')) {
+        selectedIndex = index;
+      }
+    });
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (selectedIndex < items.length - 1) {
+        if (selectedIndex > -1) items[selectedIndex].classList.remove('selected');
+        items[selectedIndex + 1].classList.add('selected');
+        items[selectedIndex + 1].scrollIntoView({ block: 'nearest' });
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (selectedIndex > 0) {
+        items[selectedIndex].classList.remove('selected');
+        items[selectedIndex - 1].classList.add('selected');
+        items[selectedIndex - 1].scrollIntoView({ block: 'nearest' });
+      }
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (selectedIndex > -1) {
+        items[selectedIndex].click();
+      }
+    }
+  }
+
+  // Event Listeners
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      openPalette();
+    }
+    if (e.key === 'Escape' && !commandPalette.classList.contains('command-palette-hidden')) {
+      closePalette();
+    }
+  });
+
+  paletteInput.addEventListener('input', handleSearch);
+  paletteInput.addEventListener('keydown', handleKeyboardNav);
+  paletteOverlay.addEventListener('click', closePalette);
 });
