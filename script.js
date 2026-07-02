@@ -50,26 +50,32 @@ cards.forEach((card) => {
 
 // AI Chat Bot Responses
 const responses = {
-  "tell me about yourself":
-    "I am Galla Jagadeesh, a B.Tech CSE-AI student passionate about AI Agents, workflow automation, and full-stack development. I enjoy building AI-powered applications that solve real-world problems.",
-
-  "what are your technical skills":
-    "My core skills include Python, Flask, HTML, CSS, SQL, Machine Learning, NLP, n8n Automation, AI Automation, Prompt Engineering, GitHub, and Scikit-learn.",
-
-  "what projects have you built":
-    "I have built a MoodFlix Movie Recommendation System, a Spam Email Detection System, a LinkedIn AI Automation Platform and I am currently building an AI Sales Intelligence Agent using n8n and AI workflows.",
-
-  "what is your ai sales intelligence agent":
-    "It is an AI-powered assistant that automatically gathers company information from news, websites, and social media, then generates meeting briefings to help sales teams prepare quickly.",
-
-  "are you looking for internships":
-    "Yes! I am actively looking for AI, Software Development, UI/UX, and AI Automation internship opportunities.",
-
-  "show me your resume":
-    "You can view my resume by clicking the Resume button in the navigation bar or the floating Resume button on this page.",
-
-  "how can i contact you":
-    "You can reach me through Email, GitHub, or LinkedIn using the contact section below."
+    "tell me about yourself":
+        "I'm Jagadeesh Galla, a B.Tech CSE-AI student passionate about building AI-powered software, autonomous AI agents, and workflow automation systems. I enjoy transforming repetitive business processes into intelligent AI solutions using Python, Flask, n8n, Generative AI, and modern APIs. My focus is on developing production-ready AI applications that combine machine learning, LLMs, and automation to improve productivity and user experience.",
+    "what are your technical skills":
+        "My core skills include Python, Flask, Machine Learning, NLP, Scikit-learn, Pandas, NumPy, HTML, CSS, JavaScript, SQLite, REST APIs, Git, GitHub, n8n, Google Gemini AI, Prompt Engineering, AI Agents, Workflow Automation, API Integration, and more.",
+    "what projects have you built":
+        "I've built several AI projects, including a LinkedIn AI Automation Platform, an AI Sales Intelligence Agent, a Spam Email Detection System, and a Movie Recommendation System. My recent focus is on end-to-end AI automation.",
+    "what is your ai sales intelligence agent":
+        "It's an AI-powered sales assistant that automatically researches companies from news, websites, and social media to generate personalized meeting briefings. The platform helps sales teams prepare faster with AI-generated insights and workflow automation.",
+    "are you looking for internships":
+        "Yes! I'm actively seeking AI Engineer, Machine Learning Engineer, and Automation Developer internships. I'm always excited to collaborate on AI products, automation platforms, and innovative software solutions.",
+    "show me your resume":
+        "You can view my resume by clicking the Resume button in the navigation bar or by downloading it from the hero section.",
+    "how can i contact you":
+        "You can reach me through Email, GitHub, or LinkedIn using the contact section below.",
+    "linkedin ai":
+        "The LinkedIn AI Automation Platform is an end-to-end system that generates high-quality LinkedIn posts using Google Gemini AI, sends content for Gmail approval, regenerates posts from reviewer feedback, and automatically publishes approved posts to LinkedIn using n8n workflows.",
+    "ai agent":
+        "I build autonomous AI agents and multi-agent workflow systems. A key project is the AI Sales Intelligence Agent, which automates company research and generates meeting briefings for sales teams.",
+    "n8n workflows":
+        "I use n8n to build complex workflow automations that integrate various APIs, AI models, and business applications. This is central to my LinkedIn Automation Platform and AI Sales Agent, enabling human-in-the-loop processes and auto-publishing.",
+    "prompt engineering":
+        "I have strong skills in prompt engineering, which I use to control and get precise outputs from Large Language Models like Google Gemini. This is crucial for generating high-quality, context-aware content in my AI projects.",
+    "ai sales agent":
+        "The AI Sales Intelligence Agent is an AI-powered assistant that automatically gathers company information from news, websites, and social media, then generates meeting briefings to help sales teams prepare quickly.",
+    "github":
+        "You can find my projects and code on my GitHub profile. The link is in the contact section at the bottom of the page."
 };
 
 const sendBtn = document.getElementById("send-btn");
@@ -119,12 +125,14 @@ function askQuestion(question) {
 
 function getButtonLabel(question){
     const labels = {
-        "tell me about yourself":"👨‍💻 About Me",
-        "what are your technical skills":"🛠 Skills",
-        "what projects have you built":"🚀 Projects",
-        "what is your ai sales intelligence agent":"🤖 AI Agent",
-        "show me your resume":"📄 Resume",
-        "how can i contact you":"📧 Contact"
+        "linkedin ai": "🚀 LinkedIn AI",
+        "ai agent": "🤖 AI Agent",
+        "n8n workflows": "⚡ n8n Workflows",
+        "prompt engineering": "🧠 Prompt Engineering",
+        "ai sales agent": "📈 AI Sales Agent",
+        "show me your resume": "📄 Resume",
+        "github": "💻 GitHub",
+        "how can i contact you": "📧 Contact"
     };
 
     return labels[question.toLowerCase()] || question;
