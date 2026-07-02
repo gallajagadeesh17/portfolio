@@ -72,6 +72,10 @@ A Flask-based movie recommendation platform that suggests personalized content b
 
 A machine learning application that classifies emails as spam or legitimate using NLP techniques.
 
+### 🛡️ LinkedIn AI Content Automation
+
+An AI-powered workflow that creates, reviews, and publishes LinkedIn posts automatically using n8n, Gemini AI, and Flask.
+
 ---
 
 ## 🤖 Portfolio AI Chatbot
