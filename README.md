@@ -142,7 +142,7 @@ Portfolio/
 * 📧 Email: **[jagadeesh.galla20@gmail.com](mailto:jagadeesh.galla20@gmail.com)**
 * 💻 GitHub: **https://github.com/gallajagadeesh17**
 * 🔗 LinkedIn: **https://linkedin.com/in/galla-jagadeesh-001310298**
-
+Updated for Pull Shark achievement.
 ---
 Updated for Pull Shark achievement.
 ## 📄 License
