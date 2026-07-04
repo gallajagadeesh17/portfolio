@@ -144,7 +144,7 @@ Portfolio/
 * 🔗 LinkedIn: **https://linkedin.com/in/galla-jagadeesh-001310298**
 
 ---
-
+Updated for Pull Shark achievement.
 ## 📄 License
 
 This project is open source and available under the **MIT License**.
