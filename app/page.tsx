@@ -6,7 +6,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/sections/Marquee";
 import { About } from "@/components/sections/About";
-import { Education } from "@/components/sections/Education";
 import { Journey } from "@/components/sections/Journey";
 import { Skills } from "@/components/sections/Skills";
 import { Work } from "@/components/sections/Work";
@@ -40,7 +39,6 @@ export default function Home() {
         <Hero />
         <Marquee />
         <About />
-        <Education />
         <Journey />
         <Skills />
         <Work />

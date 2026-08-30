@@ -6,7 +6,6 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const navItems = [
   { label: "ABOUT", href: "#about" },
-  { label: "EDUCATION", href: "#education" },
   { label: "JOURNEY", href: "#journey" },
   { label: "TOOLKIT", href: "#skills" },
   { label: "WORK", href: "#work" },

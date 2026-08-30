@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { certificationsData, Certification } from "@/content/certifications";
 import { ImageModal } from "@/components/ui/ImageModal";
 import { getGSAP, prefersReducedMotion } from "@/lib/gsap";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 
 export const Certifications: React.FC = () => {
   const [previewCert, setPreviewCert] = useState<Certification | null>(null);
@@ -15,6 +15,29 @@ export const Certifications: React.FC = () => {
     const { gsap } = getGSAP();
 
     const ctx = gsap.context(() => {
+      // 1. Horizontal divider lines animation (content-first once:true)
+      const dividers = containerRef.current?.querySelectorAll("[data-cert-divider]");
+      if (dividers?.length) {
+        gsap.fromTo(
+          dividers,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            transformOrigin: "left center",
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 78%",
+              once: true,
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // 2. Credential rows stagger reveal
       const rows = containerRef.current?.querySelectorAll("[data-cert-row]");
       if (rows?.length) {
         gsap.fromTo(
@@ -24,12 +47,12 @@ export const Certifications: React.FC = () => {
             opacity: 1,
             y: 0,
             duration: 0.7,
-            stagger: 0.1,
+            stagger: 0.12,
             ease: "power3.out",
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top 78%",
-              once: true, // Content NEVER hides after revealing!
+              once: true,
               toggleActions: "play none none none",
             },
           }
@@ -41,13 +64,13 @@ export const Certifications: React.FC = () => {
   }, []);
 
   return (
-    <section id="certifications" ref={containerRef} className="py-28 sm:py-36 px-6 sm:px-8 max-w-7xl mx-auto z-10 relative border-t border-white/[0.06]">
+    <section id="certifications" ref={containerRef} className="py-36 sm:py-44 px-6 sm:px-8 max-w-7xl mx-auto z-10 relative">
       {/* Section Header */}
-      <div className="mb-16">
+      <div className="mb-20">
         <span className="font-mono text-xs font-bold text-accent tracking-widest uppercase">
           05 / CERTIFICATIONS
         </span>
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight leading-tight mt-2">
+        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-primary tracking-tight leading-tight mt-3">
           Credentials &amp; <span className="font-serif italic font-normal text-accent">Certifications.</span>
         </h2>
         <p className="text-sm sm:text-base text-primary-muted mt-3 max-w-2xl">
@@ -55,43 +78,74 @@ export const Certifications: React.FC = () => {
         </p>
       </div>
 
-      {/* Vertical Editorial List with Thin Separator Lines */}
+      {/* Premium Editorial Credential List */}
       <div className="flex flex-col border-t border-white/10">
         {certificationsData.map((cert, idx) => (
           <div
             key={cert.id}
             data-cert-row
-            className="group py-8 border-b border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors hover:border-accent/40 cursor-pointer opacity-100"
-            onClick={() => setPreviewCert(cert)}
+            className="group py-9 border-b border-white/10 flex flex-col gap-5 transition-all hover:border-accent/40 cursor-pointer opacity-100"
+            onClick={() => {
+              if (cert.image) setPreviewCert(cert);
+              else if (cert.credentialUrl) window.open(cert.credentialUrl, "_blank");
+            }}
             data-cursor="open"
           >
-            <div className="flex items-start md:items-center gap-6 min-w-0 flex-1">
-              <span className="font-mono text-sm font-bold text-accent group-hover:translate-x-1.5 transition-transform">
-                0{idx + 1}
-              </span>
-
-              <div className="min-w-0">
-                <h3 className="text-xl sm:text-2xl font-bold text-primary group-hover:text-accent group-hover:translate-x-1.5 transition-[transform,color] break-words">
+            {/* Top Meta & Title Row */}
+            <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
+              <div className="flex items-baseline gap-4">
+                <span className="font-mono text-xs sm:text-sm font-bold text-accent group-hover:text-purple-300 transition-colors">
+                  0{idx + 1}
+                </span>
+                <h3 className="text-[clamp(24px,3.2vw,44px)] font-extrabold text-primary group-hover:text-accent group-hover:translate-x-1.5 transition-all leading-tight">
                   {cert.title}
                 </h3>
-                <p className="text-xs font-mono text-primary-muted mt-1">
-                  {cert.issuer} • {cert.date}
-                </p>
+              </div>
+
+              <div className="flex items-center gap-3 font-mono text-xs text-primary-muted shrink-0">
+                <span className="text-slate-300 font-semibold">{cert.issuer}</span>
+                <span>•</span>
+                <span className="text-accent">{cert.date}</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 shrink-0">
-              <span className="text-xs font-mono text-primary-muted hidden sm:inline max-w-[min(24rem,45vw)] whitespace-normal text-right leading-relaxed">
-                {cert.skillsVerified.join(" • ")}
-              </span>
-              <div className="p-2.5 rounded-full border border-white/15 text-primary opacity-60 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:border-accent group-hover:text-accent transition-all">
-                <ArrowUpRight className="w-4 h-4" />
+            {/* Horizontal Divider Line */}
+            <div data-cert-divider className="w-full h-px bg-white/10 group-hover:bg-accent/50 transition-colors" />
+
+            {/* Skills Tags & Action Row */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-2">
+                {cert.skillsVerified.map((skill, sIdx) => (
+                  <span
+                    key={sIdx}
+                    className="px-3 py-1 text-xs font-mono rounded-lg bg-white/5 border border-white/10 text-slate-300 group-hover:border-white/20 transition-colors"
+                  >
+                    ✓ {skill}
+                  </span>
+                ))}
+              </div>
+
+              {/* Minimal Circular Arrow Action Button */}
+              <div className="flex items-center gap-2 text-xs font-mono text-primary-muted shrink-0">
+                {cert.image && (
+                  <span className="hidden sm:inline text-[11px] text-slate-400">
+                    PREVIEW CERTIFICATE
+                  </span>
+                )}
+                <div className="p-3 rounded-full border border-white/15 text-primary group-hover:border-accent group-hover:text-accent group-hover:translate-x-1 transition-all">
+                  {cert.credentialUrl && !cert.image ? (
+                    <ExternalLink className="w-4 h-4" />
+                  ) : (
+                    <ArrowUpRight className="w-4 h-4" />
+                  )}
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Certificate Image Lightbox Modal */}
       <ImageModal
         imageSrc={previewCert?.image || null}
         title={previewCert?.title}
