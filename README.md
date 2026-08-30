@@ -1,140 +1,169 @@
-# Galla Jagadeesh — Premium Personal Developer Portfolio
+<div align="center">
 
-A cinematic, high-performance personal developer portfolio built for **Galla Jagadeesh**, positioning him as an **AI & Automation Developer** and **Full-Stack Developer**.
+# Galla Jagadeesh
 
----
+### AI & Automation Developer
 
-## 🌟 Features
+Building AI applications, LLM workflows & automation systems.
 
-- **Cinematic Aesthetic**: Obsidian dark theme (`#05070e`), subtle violet/indigo glow, fine grid texture, and interactive HTML5 background canvas particles.
-- **Fast Opening Intro**: Skippable loading screen with system initialization counter, typography reveal, and reduced-motion fallback.
-- **Content Architecture**: Standalone data files in `content/` allowing total content updates without touching React component code.
-- **Featured Case Studies**: Deep-dive interactive project modals detailing problems, solutions, n8n workflow steps, tech pills, and live demo / GitHub links.
-- **Chronological Journey Timeline**: Interactive timeline showcasing CS education, Masai AIPM training track, and project milestones.
-- **Visual Architecture Gallery**: Filterable visual showcase with high-res lightbox modals.
-- **Custom Cursor & Microinteractions**: Desktop-only interactive follow cursor, magnetic hover buttons, active-section navbar indicators, and smooth scrolling.
-- **SEO & Production Optimized**: Pre-configured with OpenGraph cards, Twitter meta tags, sitemap.xml, robots.txt, and 100% Vercel Hobby tier compatibility.
+[🌐 Portfolio](https://galla-jagadeesh-portfolio.vercel.app) &nbsp;•&nbsp; [💼 LinkedIn](https://linkedin.com/in/gallajagadeesh) &nbsp;•&nbsp; [🐙 GitHub](https://github.com/gallajagadeesh17) &nbsp;•&nbsp; [📄 Resume](https://galla-jagadeesh-portfolio.vercel.app/resume.pdf)
 
----
-
-## 🛠️ Technology Stack
-
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: GSAP (ScrollTrigger), Framer Motion, HTML5 Canvas
-- **Icons**: Lucide React
-- **Deployment**: Vercel Ready
-
----
-
-## 📁 Project Structure
-
-```
-d:/AI/
-├── app/
-│   ├── globals.css         # Global styles, noise background & theme tokens
-│   ├── layout.tsx          # Root layout with SEO & global overlays
-│   └── page.tsx            # Main portfolio scenes orchestrator
-├── components/
-│   ├── layout/
-│   │   ├── Navbar.tsx      # Floating nav with mobile slide-down drawer
-│   │   └── Footer.tsx      # Minimal footer with back-to-top button
-│   ├── sections/
-│   │   ├── Intro.tsx       # Fast skippable cinematic loader
-│   │   ├── Hero.tsx        # Hero headline, focal image & compact stats
-│   │   ├── About.tsx       # Editorial narrative & current status
-│   │   ├── Journey.tsx     # Chronological timeline
-│   │   ├── Skills.tsx      # Categorized tech stack grid
-│   │   ├── Work.tsx        # Featured work cards with detail modal trigger
-│   │   ├── Experience.tsx  # Verified experience & achievements
-│   │   ├── Certifications.tsx # Stacked certification cards
-│   │   ├── GithubSection.tsx  # "Building in Public" open-source section
-│   │   ├── Gallery.tsx     # Visual gallery lightbox
-│   │   └── Contact.tsx     # Final CTA with email copy button
-│   └── ui/
-│       ├── Cursor.tsx      # Interactive follow cursor (desktop only)
-│       ├── ParticleCanvas.tsx # 60fps HTML5 Canvas background
-│       ├── MagneticButton.tsx # Hover magnetic attraction button wrapper
-│       ├── SectionHeading.tsx # Reusable section title with index badge
-│       ├── ProjectModal.tsx   # Rich project detail modal
-│       └── ImageModal.tsx     # Lightbox preview modal
-├── content/
-│   ├── profile.ts          # Hero bio, positioning, stats, location
-│   ├── projects.ts         # Featured projects (LinkedIn Finder, MAKKMAL, BESCOM)
-│   ├── skills.ts           # Categorized skills matrix
-│   ├── journey.ts          # Chronological timeline events
-│   ├── experience.ts       # Verified experience & achievements
-│   ├── certifications.ts   # Certificate credentials & issuer data
-│   ├── gallery.ts          # Visual screenshot items
-│   └── socials.ts          # GitHub, LinkedIn, Email, Resume URLs
-├── public/
-│   ├── images/             # Profile, project, and certificate visuals
-│   ├── robots.txt          # Search engine configuration
-│   └── sitemap.xml         # XML sitemap
-├── lib/
-│   ├── gsap.ts             # GSAP & ScrollTrigger initialization
-│   └── utils.ts            # Tailwind class merger helper (`cn`)
-├── .env.example
-├── next.config.mjs
-├── tailwind.config.ts
-├── tsconfig.json
-└── package.json
+```text
+AI  ·  AUTOMATION  ·  PYTHON  ·  LLMs  ·  n8n
 ```
 
----
-
-## ✏️ How to Edit Content
-
-To update any text, project details, or credentials, edit the corresponding file in `content/`:
-
-1. **Profile & Stats**: Edit `content/profile.ts`
-2. **Featured Projects**: Edit `content/projects.ts`
-3. **Skills & Tech Stack**: Edit `content/skills.ts`
-4. **Journey Timeline**: Edit `content/journey.ts`
-5. **Certifications**: Edit `content/certifications.ts`
-6. **Social & Contact Links**: Edit `content/socials.ts`
-7. **Profile Image**: Replace `/public/images/profile.png` with your photo.
+</div>
 
 ---
 
-## 🚀 Local Development
+## About
 
-1. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
+I’m a B.Tech Computer Engineering (Artificial Intelligence) student focused on building AI applications, LLM workflows and workflow automations. 
 
-2. **Run Local Development Server**:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-3. **Build for Production**:
-   ```bash
-   npm run build
-   ```
-
-4. **Start Production Server**:
-   ```bash
-   npm run start
-   ```
+My work combines Python, AI APIs, n8n, machine learning, and human-in-the-loop automation to turn ideas into practical, reliable systems.
 
 ---
 
-## ☁️ Vercel Deployment
+## What I Build
 
-This project is built to deploy seamlessly on Vercel's Hobby (Free) Tier:
-
-1. Push your repository to **GitHub**.
-2. Go to [Vercel Dashboard](https://vercel.com/new) and select **Import Repository**.
-3. Choose **Next.js** framework preset (detected automatically).
-4. Click **Deploy**. No additional environment variables are required for standard deployment.
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <h3>🤖 AI Applications</h3>
+      <p>Building practical AI-powered applications, intelligent tools, and sales intelligence platforms.</p>
+    </td>
+    <td width="33%" valign="top">
+      <h3>⚙️ Workflow Automation</h3>
+      <p>Designing autonomous automated pipelines with n8n, connected APIs, and AI agent steps.</p>
+    </td>
+    <td width="33%" valign="top">
+      <h3>🧠 LLM Systems</h3>
+      <p>Working with Gemini, prompt engineering, human-in-the-loop review, and NLP workflows.</p>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 💡 Credits & Design Inspiration
+## Tech Stack
 
-The visual direction and interaction model were inspired by creative developer portfolios, featuring cinematic section transitions and minimalist obsidian dark theme aesthetics. The implementation, code architecture, components, and personal content are completely original.
+| Category | Technologies |
+| :--- | :--- |
+| **Programming** | `Python` `C` |
+| **Web** | `HTML` `CSS` `JavaScript` `Flask` |
+| **Libraries** | `Pandas` `NumPy` `Scikit-learn` |
+| **Databases** | `SQL` `MySQL` `SQLite` |
+| **AI & Automation** | `n8n` `AI Agents` `Prompt Engineering` `AI Workflow Automation` `NLP` `Google Gemini` `No-Code Tools` `LLM Workflows` |
+| **APIs** | `REST APIs` `GitHub API` `Bright Data API` `Google Sheets API` `Gmail API` `LinkedIn API` |
+| **Tools** | `Git` `GitHub` `Google Colab` |
 
+---
+
+## Featured Projects
+
+### `01` — Saarthi-AI
+**AI Sales Intelligence Platform**
+
+Automated lead research, market positioning analysis, and contextual draft generation for outreach.
+- **Technologies:** `Flask` · `SQLite` · `n8n` · `AI Automation`
+- **Repository:** [gallajagadeesh17/saarthi-ai](https://github.com/gallajagadeesh17/saarthi-ai)
+
+---
+
+### `02` — LinkedIn Automation AI
+**Human-in-the-Loop AI Content Automation**
+
+Automated trend extraction, post generation via Gemini, draft email notification via Gmail API, and human approval flow.
+- **Technologies:** `n8n` · `Google Gemini` · `Gmail API` · `AI Agents`
+- **Repository:** [gallajagadeesh17/linkedin-automation-ai](https://github.com/gallajagadeesh17/linkedin-automation-ai)
+
+---
+
+### `03` — Project Archaeologist
+**Multi-Agent GitHub Revival Analyzer**
+
+Scans abandoned GitHub repositories, assesses code health, and generates AI improvement recommendations.
+- **Technologies:** `n8n` · `AI Agents` · `GitHub API`
+- **Repository:** [gallajagadeesh17/project-archaeologist](https://github.com/gallajagadeesh17/project-archaeologist)
+
+---
+
+### `04` — LinkedIn Job Finder Automation
+**Automated Job Sourcing Pipeline**
+
+Scrapes relevant job posts via Bright Data API, filters target roles, and organizes qualified listings into Google Sheets.
+- **Technologies:** `n8n` · `Bright Data API` · `Google Sheets API`
+- **Repository:** [gallajagadeesh17/linkedin-job-finder](https://github.com/gallajagadeesh17/linkedin-job-finder)
+
+---
+
+### `05` — AI Spam Email Detection System
+**Machine Learning Email Classifier**
+
+NLP classification pipeline using TF-IDF feature extraction and Naive Bayes to classify incoming emails accurately.
+- **Technologies:** `Python` · `Scikit-learn` · `TF-IDF` · `Multinomial Naive Bayes` · `NLP`
+- **Repository:** [gallajagadeesh17/ai-spam-detection](https://github.com/gallajagadeesh17/ai-spam-detection)
+
+---
+
+## Architecture & Workflow
+
+```mermaid
+flowchart LR
+    A[IDEA] --> B[AI / LLM]
+    B --> C[AUTOMATION]
+    C --> D[API / DATA]
+    D --> E[APPLICATION]
+    E --> F[HUMAN-IN-THE-LOOP]
+
+    style A fill:#0f172a,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style B fill:#0f172a,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style C fill:#0f172a,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style D fill:#0f172a,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style E fill:#0f172a,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style F fill:#0f172a,stroke:#8b5cf6,stroke-width:2px,color:#fff
+```
+
+---
+
+## Certifications
+
+- 🏆 **Oracle Cloud Infrastructure 2025 Certified Generative AI Professional** — *Oracle (2025)*
+- 🏆 **GenAI Powered Data Analytics Job Simulation** — *Tata (2025)*
+- 🏆 **TCS iON Career Edge: Young Professional** — *Tata (2025)*
+
+---
+
+## Education
+
+**B.Tech — Computer Engineering (Artificial Intelligence)**  
+Ganpat University &nbsp;•&nbsp; *2023 — 2027*
+
+---
+
+## Currently Exploring
+
+- AI Applications
+- LLM Workflows
+- Workflow Automation
+- AI Agents
+- API Integrations
+- Rapid Prototyping
+
+---
+
+## Explore the Portfolio
+
+Interested in the work behind the code?
+
+🌐 **[Visit my live portfolio](https://galla-jagadeesh-portfolio.vercel.app)**
+
+> *Let's build something useful.*
+
+---
+
+## Contact
+
+- **Email:** [jagadeesh.galla20@gmail.com](mailto:jagadeesh.galla20@gmail.com)
+- **GitHub:** [github.com/gallajagadeesh17](https://github.com/gallajagadeesh17)
+- **LinkedIn:** [linkedin.com/in/gallajagadeesh](https://linkedin.com/in/gallajagadeesh)
